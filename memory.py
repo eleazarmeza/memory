@@ -3,7 +3,20 @@ from turtle import *
 from freegames import path
 
 car = path('car.gif')
-tiles = list(range(32)) * 2
+# Added some icons
+colorTiles = ["❤", "✰", "☀",
+              "✄", "✌", "☢",
+              "✼", "♕", "☮",
+              "☘", "☃", "☎",
+              "☻", "♘", "♤",
+              "♧", "⚠", "✧",
+              "❑", "❦", "⬟",
+              "✜", "✥", "✎",
+              "✈", "⛾", "⛱",
+              "⛩", "⛟", "⛏",
+              "⚑", "☠"]
+colorTiles = [val for val in colorTiles for _ in (0, 1)]
+
 state = {'mark': None}
 hide = [True] * 64
 tap_number = 0
@@ -34,7 +47,7 @@ def tap(x, y):
     mark = state['mark']
     global tap_number
 
-    if mark is None or mark == spot or tiles[mark] != tiles[spot]:
+    if mark is None or mark == spot or colorTiles[mark] != colorTiles[spot]:
         state['mark'] = spot
         tap_number += 1
     else:
@@ -62,14 +75,14 @@ def draw():
         up()
         goto(x + 2, y)
         color('black')
-        write(tiles[mark], font=('Arial', 30, 'normal'))
+        write(colorTiles[mark], font=('Arial', 30, 'normal'))
 
     goto(x = -212, y = 198)
     write(tap_number, False, font = ('Arial', 10, 'normal'))
     update()
     ontimer(draw, 100)
 
-shuffle(tiles)
+shuffle(colorTiles)
 setup(420, 420, 370, 0)
 addshape(car)
 hideturtle()
