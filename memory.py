@@ -49,6 +49,12 @@ def tap(x, y):
     
     tap_number += 1
 
+def allTilesRevealed():
+    for tile in hide:
+        if tile:
+            return False
+    return True
+
 def draw():
     "Draw image and tiles."
     clear()
@@ -66,9 +72,14 @@ def draw():
     if mark is not None and hide[mark]:
         x, y = xy(mark)
         up()
-        goto(x + 2, y)
+        goto(x + 25, y + 8)
         color('black')
-        write(colorTiles[mark], font=('Arial', 30, 'normal'))
+        write(colorTiles[mark], align="center", font=('Arial', 30, 'normal'))
+    
+    if allTilesRevealed():
+        goto(-110,-30)
+        color('white')
+        write("Has Ganado",False, font=('Arial', 35, 'normal'))
 
     up()
     goto(x = -212, y = 198)
