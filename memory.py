@@ -4,17 +4,10 @@ from freegames import path
 
 car = path('car.gif')
 # Added some icons
-colorTiles = ["❤", "✰", "☀",
-              "✄", "✌", "☢",
-              "✼", "♕", "☮",
-              "☘", "☃", "☎",
-              "☻", "♘", "♤",
-              "♧", "⚠", "✧",
-              "❑", "❦", "⬟",
-              "✜", "✥", "✎",
-              "✈", "⛾", "⛱",
-              "⛩", "⛟", "⛏",
-              "⚑", "☠"]
+colorTiles = ["❤", "✰", "☀", "✄", "✌", "☢", "✼", "♕",
+              "☮", "☘", "☃", "☎", "☻", "♘", "♤", "♧",
+              "⚠", "✧", "❑", "❦", "⬟", "✜", "✥", "✎",
+              "✈", "⛾", "⛱", "⛩", "⛟", "⛏", "⚑", "☠"]
 colorTiles = [val for val in colorTiles for _ in (0, 1)]
 
 state = {'mark': None}
@@ -49,12 +42,12 @@ def tap(x, y):
 
     if mark is None or mark == spot or colorTiles[mark] != colorTiles[spot]:
         state['mark'] = spot
-        tap_number += 1
     else:
         hide[spot] = False
         hide[mark] = False
         state['mark'] = None
-        tap_number += 1
+    
+    tap_number += 1
 
 def draw():
     "Draw image and tiles."
@@ -77,6 +70,7 @@ def draw():
         color('black')
         write(colorTiles[mark], font=('Arial', 30, 'normal'))
 
+    up()
     goto(x = -212, y = 198)
     write(tap_number, False, font = ('Arial', 10, 'normal'))
     update()
